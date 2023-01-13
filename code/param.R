@@ -22,6 +22,13 @@ source('./code/histHotspot.R')
 source('./code/cumulIntensity.R')
 source('./code/cumulHotspots.R')
 
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~   SHINY CODE   ~~~~~~~~~~~~~~~~~~~~~~~~~ #
+source('./shinycode/panelsSTL.R')
+source('./shinycode/panelsSS.R')
+source('./shinycode/serverSTL.R')
+source('./shinycode/serverSS.R')
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~   TEXTS   ~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # load('./data/driversList.RData')
 source('./texts/driversList.R')

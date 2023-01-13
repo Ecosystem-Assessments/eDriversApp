@@ -1,6 +1,5 @@
 # Parameters & data
 source('./code/param.R')
-source("functions/panelsSTL.R")
 
 # User interface setup
 ui <- navbarPage("eDrivers",
