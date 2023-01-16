@@ -250,7 +250,7 @@ th {
   border-top: 1px solid #4e4e4e99;
 }
 
-#rawData {
+.rawData {
   font-size:        12px;
   margin-top:       -5%;
   margin-left:      4%;
@@ -259,7 +259,7 @@ th {
   font-family:      'Josefin Slab', serif;
 }
 
-#dataType {
+.dataType {
   font-size:        12px;
   margin-top:       -10%;
   margin-left:      4%;
@@ -268,7 +268,7 @@ th {
   font-family:      'Josefin Slab', serif;
 }
 
-#layersTable {
+.layersTable {
   font-size:        12px;
   margin-top:       -5%;
   margin-left:      4%;
@@ -285,7 +285,8 @@ button {
   display:          inline-block;
   box-shadow:       0.5px 0.5px 0.5px 1px #bbbbbb;
 }
-#Uncheck {
+
+.Uncheck {
   background-color: #ffffff;
   border:           #8c8c8c;
   color:            black;
@@ -294,7 +295,8 @@ button {
   border-radius:    0px;
   margin-top:       -4%
 }
-#CheckAll {
+
+.CheckAll {
   background-color: #ffffff;
   border: #8c8c8c;
   color: black;
