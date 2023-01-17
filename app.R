@@ -10,7 +10,7 @@ ui <- navbarPage("eDrivers",
   
   # Panel 1 
   tabPanel("Scotian shelf",  
-    appUI("SS", layers = layers_stl[1:5,])
+    appUI("SS", layers = layers_ss)
   ),
 )
 
@@ -35,12 +35,12 @@ server = function(input, output, session) {
     lng = -61.85, 
     lat = 42.94,
     zoom = 6,
-    layers = layers_stl,
-    rawDrivers = drivers_stl$rawDrivers, 
-    hotspots = drivers_stl$hotspots, 
-    drivers = drivers_stl$drivers, 
-    hot = drivers_stl$hot, 
-    dr = drivers_stl$dr
+    layers = layers_ss,
+    rawDrivers = drivers_ss$rawDrivers, 
+    hotspots = drivers_ss$hotspots, 
+    drivers = drivers_ss$drivers, 
+    hot = drivers_ss$hot, 
+    dr = drivers_ss$dr
   )
 }
 

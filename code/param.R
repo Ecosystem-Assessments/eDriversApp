@@ -10,11 +10,15 @@ library(dplyr)
 library(tidyr)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~   DATA   ~~~~~~~~~~~~~~~~~~~~~~~~~ #
-# source('./texts/layers_stl.R')
 # source('./texts/eDrivers.R')
+# source('./texts/layers_stl.R')
+# source('./texts/layers_ss.R')
+load('./data/eDrivers.RData')
 load('./data/drivers_stl.RData')
 load('./data/layers_stl.RData')
-load('./data/eDrivers.RData')
+load('./data/drivers_ss.RData')
+load('./data/layers_ss.RData')
+
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~   FUNCTIONS   ~~~~~~~~~~~~~~~~~~~~~~~~~ #
 source('./code/histDriver.R')
