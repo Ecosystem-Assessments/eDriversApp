@@ -1,4 +1,4 @@
-cumulHotspots <- function(sel, ras) {
+cumulHotspots <- function(sel, ras, layers, hot) {
   # Create vector of bins
   nBins <- 13
   binData <- 0:13
@@ -91,14 +91,14 @@ cumulHotspots <- function(sel, ras) {
       y2 <- binData[i+1, j]
       polygon(x = c(bins[j]-xGap, bins[j]+xGap, bins[j]+xGap, bins[j]-xGap),
               y = c(y1, y1, y2, y2),
-              col = driversList$col[driversList$FileName == sel[i]],
+              col = layers$col[layers$FileName == sel[i]],
               border = 'transparent')
     }
   }
 
   # ~~~~~~~~~~~~~~~~~~~ LEGEND ~~~~~~~~~~~~~~~~~~~ #
   # Param
-  nDr <- nrow(driversList)
+  nDr <- nrow(layers)
   y <- seq(.1,.9, length.out = nDr+1)
 
   y <- data.frame(y1 = y[1:nDr],
@@ -122,16 +122,16 @@ cumulHotspots <- function(sel, ras) {
     y2 <- y$y2[i]-ygap
     polygon(x = c(x1, x2, x2, x1, x1),
             y = c(y1, y1, y2, y2, y1),
-            col = driversList$col[i],
+            col = layers$col[i],
             border = '#000000')
   }
 
   # Text
-  text(x = rep(.15, ncol(dr)), y = y$mid, labels = driversList$Drivers, adj = c(0,.5), cex = 1.15)
+  text(x = rep(.15, ncol(dr)), y = y$mid, labels = layers$Drivers, adj = c(0,.5), cex = 1.15)
 
   # Groups
-  for(i in levels(factor(driversList$Groups))) {
-    id <- driversList$Groups == i
+  for(i in levels(factor(layers$Groups))) {
+    id <- layers$Groups == i
     Y <- sum(range(y$mid[id])) / 2
     text(x = -.35, y = Y, labels = i, adj = c(0,.5), font = 2, cex = 1.15)
   }

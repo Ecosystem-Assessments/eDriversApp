@@ -9,14 +9,14 @@
 # # load('./data/marimekkoFd.RData')
 # # load('./data/drivers.RData')
 # load('./data/dr.RData')
-# load('./data/driversList.RData')
+# load('./data/layers.RData')
 # # sel <- input$layersTable
 # sel <- c('aquacultureInv','fisheriesDD')
 # sel <- c('Aragonite','Hypoxia')
 # sel <- colnames(hot)
 
 
-cumulIntensity <- function(sel, ras) {
+cumulIntensity <- function(sel, ras, layers, dr) {
     # ~~~~~~~~~~~~~~~~~~~ DATA PREPARATION ~~~~~~~~~~~~~~~~~~~ #
   # Create vector of bins
   nBins <- 250 # Just because
@@ -105,13 +105,13 @@ cumulIntensity <- function(sel, ras) {
     y2 <- binData[i+1, ]
     polygon(x = c(bins, rev(bins), bins[1]),
             y = c(y1, rev(y2), y1[1]),
-            col = driversList$col[driversList$FileName == sel[i]],
+            col = layers$col[layers$FileName == sel[i]],
             border = 'transparent')
   }
 
   # ~~~~~~~~~~~~~~~~~~~ LEGEND ~~~~~~~~~~~~~~~~~~~ #
   # Param
-  nDr <- nrow(driversList)
+  nDr <- nrow(layers)
   y <- seq(.1,.9, length.out = nDr+1)
 
   y <- data.frame(y1 = y[1:nDr],
@@ -135,16 +135,16 @@ cumulIntensity <- function(sel, ras) {
     y2 <- y$y2[i]-ygap
     polygon(x = c(x1, x2, x2, x1, x1),
             y = c(y1, y1, y2, y2, y1),
-            col = driversList$col[i],
+            col = layers$col[i],
             border = '#000000')
   }
 
   # Text
-  text(x = rep(.15, ncol(dr)), y = y$mid, labels = driversList$Drivers, adj = c(0,.5), cex = 1.15)
+  text(x = rep(.15, ncol(dr)), y = y$mid, labels = layers$Drivers, adj = c(0,.5), cex = 1.15)
 
   # Groups
-  for(i in levels(factor(driversList$Groups))) {
-    id <- driversList$Groups == i
+  for(i in levels(factor(layers$Groups))) {
+    id <- layers$Groups == i
     Y <- sum(range(y$mid[id])) / 2
     text(x = -.35, y = Y, labels = i, adj = c(0,.5), font = 2, cex = 1.15)
   }

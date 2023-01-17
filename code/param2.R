@@ -10,6 +10,7 @@ library(dplyr)
 library(tidyr)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~   DATA   ~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# load('./data/drivers_stl.RData')
 load('./data/rawDrivers.RData')
 load('./data/drivers.RData')
 load('./data/hotspots.RData')
@@ -44,7 +45,6 @@ raster0 <- raster(vals = NA,
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~   PARAMETERS   ~~~~~~~~~~~~~~~~~~~~~~~~~ #
-layers <- driversList
 nDr <- nrow(layers)
 
 # # Insert checkboxes in table

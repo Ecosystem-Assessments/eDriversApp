@@ -1,4 +1,4 @@
-appServer <- function(id) {
+appServer <- function(id, layers) {
   moduleServer(id, function(input, output, session) {
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ PARAMETERS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
@@ -7,7 +7,7 @@ appServer <- function(id) {
     nSel <- reactive(length(sel())) # Number of selected drivers
     type <- reactive(input$dataType) # Selected type of data (footprint vs hotspot)
     trans <- reactive(input$rawData) # Selected type of data (raw vs transformed data)
-    uid <- reactive(which(driversList$FileName %in% sel())) # ID of selected drivers in data table
+    uid <- reactive(which(layers$FileName %in% sel())) # ID of selected drivers in data table
 
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
@@ -143,9 +143,9 @@ appServer <- function(id) {
       } else if (nSel() == 1) {
         # Single driver description
         tagList(
-          HTML(dataDesc(uid())),
+          HTML(dataDesc(uid(), layers)),
           div(plotOutput(NS(id,'singlePlot'), width = '95%', height = '300px'),align = 'center'),
-          HTML(dataOver(uid()))
+          HTML(dataOver(uid(), layers))
         )
       } else if (nSel() > 1) {
         tagList(
@@ -172,8 +172,12 @@ appServer <- function(id) {
     # ~~~~~~~~~~~~ MULTIPLE DRIVERS ~~~~~~~~~~~~ #
     output$multiPlot <- renderPlot({
       if (nSel() > 1) {
-        if (type() == 'footprint' && trans() == 'transformed') cumulIntensity(sel(), ras())
-        if (type() == 'hotspots'  && trans() == 'transformed') cumulHotspots(sel(), ras())
+        if (type() == 'footprint' && trans() == 'transformed') {
+          cumulIntensity(sel(), ras(), layers, dr)
+        }
+        if (type() == 'hotspots'  && trans() == 'transformed') {
+          cumulHotspots(sel(), ras(), layers, hot)
+        }
       }
     })  
 
