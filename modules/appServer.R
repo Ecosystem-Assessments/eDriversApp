@@ -1,4 +1,4 @@
-appServer <- function(id, layers, rawDrivers, hotspots, drivers, hot, dr) {
+appServer <- function(id, lng, lat, zoom,layers, rawDrivers, hotspots, drivers, hot, dr) {
   moduleServer(id, function(input, output, session) {
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ PARAMETERS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
@@ -83,7 +83,7 @@ appServer <- function(id, layers, rawDrivers, hotspots, drivers, hot, dr) {
     output$map <- renderLeaflet({
       leaflet() %>%
              addProviderTiles(provider = providers$CartoDB.Positron) %>%
-             setView(lng   = -65, lat   =  48.50, zoom  = 6) %>%
+             setView(lng = lng, lat = lat, zoom = zoom) %>%
              addEasyButton(
                easyButton(icon = "fa-globe",
                           title = "Zoom to Level 1",
