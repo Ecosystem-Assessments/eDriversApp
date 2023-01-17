@@ -49,7 +49,7 @@ cumulHotspots <- function(sel, ras, layers, hot) {
   # Empty plot
   plot(0, ann = FALSE, axes = FALSE, type = "n",
        xlim = c(0.5, 13.5),
-       ylim = c(0, 25000))
+       ylim = c(0, 40000))
 
    # Plot elements
    axis(2, cex.axis = .9, las = 2)
@@ -127,7 +127,7 @@ cumulHotspots <- function(sel, ras, layers, hot) {
   }
 
   # Text
-  text(x = rep(.15, ncol(dr)), y = y$mid, labels = layers$Drivers, adj = c(0,.5), cex = 1.15)
+  text(x = rep(.15, ncol(hot)), y = y$mid, labels = layers$Drivers, adj = c(0,.5), cex = 1.15)
 
   # Groups
   for(i in levels(factor(layers$Groups))) {

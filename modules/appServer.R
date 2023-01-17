@@ -1,4 +1,4 @@
-appServer <- function(id, layers) {
+appServer <- function(id, layers, rawDrivers, hotspots, drivers, hot, dr) {
   moduleServer(id, function(input, output, session) {
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ PARAMETERS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
@@ -8,7 +8,13 @@ appServer <- function(id, layers) {
     type <- reactive(input$dataType) # Selected type of data (footprint vs hotspot)
     trans <- reactive(input$rawData) # Selected type of data (raw vs transformed data)
     uid <- reactive(which(layers$FileName %in% sel())) # ID of selected drivers in data table
-
+    
+    # Empty raster
+    raster0 <- raster(vals = NA,
+                      nrow = 1,
+                      ncol = 1,
+                      ext = extent(drivers),
+                      crs = 3857)
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
