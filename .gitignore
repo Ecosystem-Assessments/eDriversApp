@@ -36,7 +36,7 @@ vignettes/*.pdf
 rsconnect/
 
 # Files to ignore
-app.R
+# app.R
 deploy.R
 dataDrivers.R
 dataMarimekko.R

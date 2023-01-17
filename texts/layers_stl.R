@@ -347,5 +347,5 @@ for(i in unique(df$Groups)) {
 
 
 # Export table
-layers <- df
-# save(layers, file = './data/layers.RData')
+layers_stl <- df
+save(layers_stl, file = './data/layers_stl.RData')
