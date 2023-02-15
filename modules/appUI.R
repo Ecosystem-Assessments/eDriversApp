@@ -45,19 +45,19 @@ appUI <- function(id, layers) {
             h5('Drivers'),
             hr(),
 
-            # Raw vs transformed data choice
-            div(class = "rawData",
-              radioButtons(
-                inputId = ns('rawData'),
-                 label = '',
-                 inline = T,
-                 choiceNames = c('Raw data','Transformed'),
-                 choiceValues = c('rawData','transformed'),
-                 selected = 'transformed' 
-              )
-            ),
+            # # Raw vs transformed data choice
+            # div(class = "rawData",
+            #   radioButtons(
+            #     inputId = ns('rawData'),
+            #      label = '',
+            #      inline = T,
+            #      choiceNames = c('Raw data','Transformed'),
+            #      choiceValues = c('rawData','transformed'),
+            #      selected = 'transformed' 
+            #   )
+            # ),
             
-
+            br(),
             # Hotspots vs footprint choice
             div(class = "dataType", 
               radioButtons(

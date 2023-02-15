@@ -1,4 +1,5 @@
-appServer <- function(id, lng, lat, zoom,layers, rawDrivers, hotspots, drivers, hot, dr) {
+# appServer <- function(id, lng, lat, zoom,layers, rawDrivers, hotspots, drivers, hot, dr) {
+appServer <- function(id, lng, lat, zoom,layers, hotspots, drivers, hot, dr) {
   moduleServer(id, function(input, output, session) {
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ PARAMETERS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
@@ -6,7 +7,8 @@ appServer <- function(id, lng, lat, zoom,layers, rawDrivers, hotspots, drivers, 
     sel <- reactive(input$layersTable) # Selected drivers
     nSel <- reactive(length(sel())) # Number of selected drivers
     type <- reactive(input$dataType) # Selected type of data (footprint vs hotspot)
-    trans <- reactive(input$rawData) # Selected type of data (raw vs transformed data)
+    # trans <- reactive(input$rawData) # Selected type of data (raw vs transformed data)
+    trans <- reactive("transformed") # Selected type of data (raw vs transformed data)
     uid <- reactive(which(layers$FileName %in% sel())) # ID of selected drivers in data table
     
     # Empty raster
@@ -24,19 +26,20 @@ appServer <- function(id, lng, lat, zoom,layers, rawDrivers, hotspots, drivers, 
       # Select proper layer depending on user selection
       if (length(sel()) == 0) {
         raster0
-      } else if (length(sel()) == 1 && trans() == 'rawData') {
-        if(type() == 'footprint') {
-          rawDrivers[[sel()]]
-        } else {
-          hotspots[[sel()]]
-        }  } else if (length(sel()) == 1 && trans() == 'transformed') {
+      # } else if (length(sel()) == 1 && trans() == 'rawData') {
+      #   if(type() == 'footprint') {
+      #     rawDrivers[[sel()]]
+      #   } else {
+      #     hotspots[[sel()]]
+      #   }  
+      } else if (length(sel()) == 1 && trans() == 'transformed') {
         if(type() == 'footprint') {
           drivers[[sel()]]
         } else {
           hotspots[[sel()]]
         }
-      } else if (length(sel()) > 1 && trans() == 'rawData') {
-        raster0
+      # } else if (length(sel()) > 1 && trans() == 'rawData') {
+      #   raster0
       } else if (length(sel()) > 1 && trans() == 'transformed') {
         if(type() == 'footprint') {
           sum(drivers[[sel()]], na.rm = T) %>%
@@ -56,11 +59,11 @@ appServer <- function(id, lng, lat, zoom,layers, rawDrivers, hotspots, drivers, 
                 maxValue() %>%
                 ceiling() %>%
                 seq(0, ., by = ./10)
-      } else if(nSel() == 1 && trans() == 'rawData') {
-        val <- ras() %>%
-                maxValue() %>%
-                ceiling() %>%
-                seq(0, ., by = ./10)
+      # } else if(nSel() == 1 && trans() == 'rawData') {
+      #   val <- ras() %>%
+      #           maxValue() %>%
+      #           ceiling() %>%
+      #           seq(0, ., by = ./10)
       } else {
         val <- seq(0, 1, by = .1)
       }
