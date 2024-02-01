@@ -8,13 +8,13 @@ Shiny application to visualize eDrivers platform data.
 
 ```bash
 cd app
-Rscript -e "shiny::runApp(port = 8083, host = '0.0.0.0')"
+Rscript -e "shiny::runApp(port = 5000, host = '0.0.0.0')"
 ```
 
 **Build and deploy the application within a container**
 
 ```bash
-docker build -t edrivers . && docker run -p 5000:5000 -it --rm edriver
+docker build -t edrivers:latest . && docker run -p 5000:5000 -it --rm edrivers:latest
 ```
 
 Deployment tested on `Docker version 25.0.0`
